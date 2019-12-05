@@ -6,6 +6,12 @@ const locations = [
 	"Los Angeles",
 	"New York City"
 ];
+const models = [
+	{ aircraftModel: "Boeing 777", passengerCapacity: 160 },
+	{ aircraftModel: "Boeing 757", passengerCapacity: 176 },
+	{ aircraftModel: "Airbus 321", passengerCapacity: 200 },
+	{ aircraftModel: "Airbus 320", passengerCapacity: 180 }
+];
 
 router.get("/", (req, res) => {
 	console.log(req.query);
@@ -14,7 +20,7 @@ router.get("/", (req, res) => {
 	if (!departureDate || Date.now >= new Date(departureDate)) {
 		res.status(400).json({
 			errorMessage:
-				"There are if flights for dates in the past. Please select different date. "
+				"There are no flights for dates in the past. Please select different date. "
 		});
 	} else if (!locations.includes(originCity)) {
 		res.status(400).json({
@@ -24,6 +30,7 @@ router.get("/", (req, res) => {
 		res.status(400).json({
 			errorMessage: `Your entry ${destinationCity} is not valid. Please select another Airport.`
 		});
+		//TODO Add Randomization to Flight numbers
 	} else {
 		res.json({ numberOfFlights: 2 });
 	}
