@@ -6,4 +6,4 @@ const app = express();
 const flightsRoute = require("./routes/flights");
 app.use("/flights", flightsRoute);
 
-app.listen(3000);
+app.listen(8000);
